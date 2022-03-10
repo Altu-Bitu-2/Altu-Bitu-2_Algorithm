@@ -9,7 +9,7 @@ using namespace std;
 int addNum(const string &a){//자리 수 합
     int result=0;
     for(int i=0;i<a.length();i++){
-        if (isdigit(a[i])) result+=a[i];}//숫자일 경우에만 더하기
+        if (isdigit(a[i])) result+=(a[i]-'0');}//숫자일 경우에만 더하기
     return result;
 }
 
@@ -21,7 +21,7 @@ bool dictionary(const string &a, const string &b){//사전순
 bool comp (const string &a, string const&b){
     if (a.length()!=b.length()) return a.length()<b.length();//길이
     if (addNum(a)!=addNum(b)) return addNum(a)<addNum(b);//자리 수 합
-    else return dictionary(a,b);//사전순
+    else return a<b;//사전순
 }
 
 int main(){
