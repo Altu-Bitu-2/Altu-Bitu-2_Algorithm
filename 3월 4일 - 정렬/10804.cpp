@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//카드 역배치
+//카드 역배치 
 void print(vector<int> card) {
 	for (int i = 0; i < 20; i++) {
 		cout << card[i] << ' ';
@@ -13,7 +13,7 @@ void print(vector<int> card) {
 
 }
 
-void swapCard(const vector<int> card){
+void swapCard(vector<int> card){
 	int a, b;
 	for (int i = 0; i < 10; i++) {
 		cin >> a >> b;  a--, b--;
@@ -40,3 +40,4 @@ int main() {
 //기억할 점
 //sort는 통째로 이동. 고정해야할 변수 있을때 쓰는거 아님. 
 //하나의 변수가 2가지 용도일때 주의 : 변수 a,b는 1)각 카드 위치(템포 내 실시간 변화) 2) 한 템포 당 swap 갯수 세기 (템포 내 고정)
+//기능 있는 문단은 함수로 빼주기

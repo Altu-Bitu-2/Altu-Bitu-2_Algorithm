@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-//알바생 강호 - 틀림 : 결과값 다 정확한데 왜 틀렸는지 모르겠음. 
+//알바생 강호 - 틀림 : 연산 후 범위 고려해야. 
 //내림차순으로 정렬
 
 long sumTip(vector<int> arr, int n){ //팁 계산

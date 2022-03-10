@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std;
-//시리얼 번호 - 틀림 : 사전순 함수가 이상한듯. 
+//시리얼 번호 : ※addNum과 dictionary 논리 오류 못 찾겠음. 
 
 int addNum(const string &a){//자리 수 합
     int result=0;
