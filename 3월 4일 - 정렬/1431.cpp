@@ -3,7 +3,8 @@
 #include <vector>
 
 using namespace std;
-//시리얼 번호 : ※addNum과 dictionary 논리 오류 못 찾겠음. 
+//시리얼 번호 : ※dictionary 힌트 주신 걸로 compare함수 써봤더니 BAAAA ACAAA 안되던 정렬 잘 돌아가지만..
+//                 여전히 백준에서 틀리다고 나옵니다 ㅠ
 
 int addNum(const string &a){//자리 수 합
     int result=0;
@@ -13,9 +14,7 @@ int addNum(const string &a){//자리 수 합
 }
 
 bool dictionary(const string &a, const string &b){//사전순
-    for (int i=0; i<a.length();i++){ //
-        if (a[i]>b[i]) return 0; //왜 오류가 나는가? 전혀 모르겠음. 
-    }
+    if (a.compare(b)>0) return 0;
     return 1;
 }
 
