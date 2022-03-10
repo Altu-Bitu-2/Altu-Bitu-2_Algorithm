@@ -13,11 +13,6 @@ int addNum(const string &a){//자리 수 합
     return result;
 }
 
-bool dictionary(const string &a, const string &b){//사전순
-    if (a.compare(b)>0) return 0;
-    return 1;
-}
-
 bool comp (const string &a, string const&b){
     if (a.length()!=b.length()) return a.length()<b.length();//길이
     if (addNum(a)!=addNum(b)) return addNum(a)<addNum(b);//자리 수 합
