@@ -1,21 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <utility>
+
 using namespace std; 
 //좌표정렬하기2
-struct cor {int x, y;};
+pair<int,int> cor;
 
-bool comp (const cor &a, const cor &b){
-    if (a.y!=b.y) return a.y < b.y;
-    else return a.x < b.x;
+
+bool comp (const pair<int,int> &a, const pair<int,int> &b){
+    if (a.second!=b.second) return a.second < b.second;
+    return a.first < b.first;
 }
 
 int main(){
+
+
+    
     //입력
     int n;
-    cin>> n; vector<cor> arr(n);
+    cin>> n; vector<pair<int,int>> arr(n);
     for (int i=0; i<n; i++){
-        cin>> arr[i].x >> arr[i].y;
+        cin>> arr[i].first >> arr[i].second;
     }
 
     //정렬
@@ -23,7 +29,9 @@ int main(){
 
     //출력
     for (int i = 0; i < n; i++) {
-        cout << arr[i].x << " " << arr[i].y << '\n';
+        cout << arr[i].first << " " << arr[i].second << '\n';
     }
     return 0;
 }
+//pair쓰기
+//

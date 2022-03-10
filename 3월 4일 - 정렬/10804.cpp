@@ -12,13 +12,8 @@ void print(vector<int> card) {
 	cout << "\n";
 
 }
-int main() {
-	//카드 초기화
-	vector<int> card(20);
-	for (int i = 0; i < 20; i++) {
-		card[i] = i + 1;
-	}
-	//입력
+
+void swapCard(const vector<int> card){
 	int a, b;
 	for (int i = 0; i < 10; i++) {
 		cin >> a >> b;  a--, b--;
@@ -27,8 +22,16 @@ int main() {
 			swap(card[a], card[b]);
 			a++, b--;//가운데로 이동
 		}
-
 	}
+}
+int main() {
+	//카드 초기화
+	vector<int> card(20);
+	for (int i = 0; i < 20; i++) {
+		card[i] = i + 1;
+	}
+	//연산
+	swapCard(card);
 	//출력
 	print(card);
 	return 0;

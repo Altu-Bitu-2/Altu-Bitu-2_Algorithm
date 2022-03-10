@@ -38,7 +38,6 @@ int main(){
     sort(guitar.begin(),guitar.end(),comp);
 
     //출력
-    cout<<"\n";
     for (int i=0; i<n; i++){
         cout<< guitar[i]<<"\n";
     }
