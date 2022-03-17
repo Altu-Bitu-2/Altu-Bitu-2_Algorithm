@@ -7,9 +7,9 @@ using namespace std;
 void setSubstring(string S, set<string> &sub_string){
     int length = S.length();
 
-     for(int i=0;i<S.length();i++){ //string length i+1개짜리
+     for(int i=1;i<=S.length();i++){ //string length i+1개짜리
         for (int k=0; k<length; k++){//시작 지점 k
-            sub_string.insert(S.substr(k,k+i));
+            sub_string.insert(S.substr(k,i));
         }
         length--;
      }

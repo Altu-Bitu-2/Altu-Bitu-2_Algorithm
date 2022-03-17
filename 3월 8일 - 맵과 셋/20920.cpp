@@ -4,7 +4,7 @@
 #include <algorithm>
 
 using namespace std;
-//영단어 문제 - 못 풀겠어서 추가제출
+//영단어 문제 - 못 풀겠어서 추가제출 예정
 //map으로 각 단어 빈도수 세서 정렬한 다음, vector로 그 순서대로 받아서 나머지 2개 기준대로 재정렬하려고 했으나 
 //막힘+ 너무 복잡하고 어수선한 코드인 것 같아서 그만둠. 
 bool comp(const vector<string,int> &a, const vector<string,int> &b){
