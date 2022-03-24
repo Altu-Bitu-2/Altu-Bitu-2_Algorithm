@@ -7,6 +7,7 @@ using namespace std;
 //스트라이크, 볼
 //가능한 모든 세자리 수 집합에서, 주어진 조건 일치하지 않는 경우 delete
 //구현ing
+
 set<string> candidate;
 
 void ruleOut(string hint, int strike, int ball){
@@ -17,7 +18,7 @@ void ruleOut(string hint, int strike, int ball){
             if (hint[i]==c[i]) num_strike++;
         }
         for(int i=0; i<3;i++){
-            if (c.find(hint[i])) num_ball++;
+            if (c.find(hint[i])!=string::npos) num_ball++;
         }
         if (num_strike!=strike || num_ball!=ball) candidate.erase(c);
     }
