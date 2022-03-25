@@ -3,11 +3,11 @@
 #include <vector>
 using namespace std;
 
-//체스판 : 보드 col 홀수일때 결과값 자꾸 틀림. 
+//체스판
 
-vector<vector<int>> board;
-vector<vector<int>> chess;
-const int B=1, W=0, MAX_ANSWER=64;
+vector<vector<char>> board;
+vector<vector<char>> chess;
+const int MAX_ANSWER=64;
 
 int calDiff(int i, int j){ //보드 각 자리에서 BW/WB 중 더 작은 값 리턴
     int cnt=0;
@@ -21,50 +21,36 @@ int calDiff(int i, int j){ //보드 각 자리에서 BW/WB 중 더 작은 값 �
 
 int findMinBlock(int r, int c){ //보드에 자리별 비교-> 최소값 갱신
     int answer=MAX_ANSWER;
-    int i=0, j=0;
-    do {
-        answer = min(answer,calDiff(i,j));
-        i++,j++;
-    } while(i+8<=c && j+8<=r);
+
+    for(int i=0;i<=r-8;i++){
+        for(int j=0;j<=c-8;j++){
+            answer = min(answer,calDiff(i,j));
+        }
+    }
     return answer;
 }
 
 int main(){
-    char Sq;
+    string row;
     int r,c;
     cin>> r >> c;
 
-    //보드 입력
-    board.assign(r,vector<int>(c,W));
+    //보드 입력 - 행 자체를 string으로 받아버려도 공백 입력을 처리할 수 있답니다
+    board.assign(r,vector<char>(c,'W'));
     for (int i=0; i<r;i++){
+        cin>> row;
         for (int j=0; j<c;j++){
-            cin>> Sq;
-            if (Sq=='B') board[i][j]=B;
+            if (row[j]=='B') board[i][j]='B';//자료형 불일치
         }
     }
 
-    //기준 체스판 생성
-    chess.assign(8,vector<int>(8,B));
+    //기준 체스판 생성 - 규칙 활용(합이 일정) (사실 생성 안해도 규칙활용해서 문제 풀 수 있음)
+    chess.assign(8,vector<char>(8,'B'));
     for (int i=0; i<8;i++){
         for (int j=0; j<8;j++){
-            if((i%2==0 && j%2!=0) || (i%2!=0 && j%2==0)) chess[i][j]=W;
+            if((i+j)%2==1) chess[i][j]='W';
         }
     }
-    
-    //디버깅용
-    // for (int i=0; i<r;i++){
-    //     for (int j=0; j<c;j++){
-    //         cout<< board[i][j];
-    //     }
-    //     cout<<'\n';
-    // }
-    // cout<<'\n';
-    // for (int i=0; i<8;i++){
-    //     for (int j=0; j<8;j++){
-    //         cout<< chess[i][j];
-    //     }
-    //     cout<<'\n';
-    // }
 
     cout<< findMinBlock(r,c);
 

@@ -10,36 +10,32 @@ bool satisfied(string crypto){
     int cnt_vowel=0, cnt_consonant=0;
     for (int i=0; i<crypto.size();i++){
         if (crypto[i]=='a' || crypto[i]=='e'|| crypto[i]=='i'|| crypto[i]=='o'|| crypto[i]=='u') cnt_vowel++;
-        else cnt_consonant++;
     }
-    if (cnt_vowel>=1 && cnt_consonant>=2) return 1;
+    if (cnt_vowel>=1 && crypto.size()-cnt_vowel >=2) return 1;//
     return 0;
 }
 
-set<string> guessCrypto(vector<string> alpha, int C, int L){
+void guessCrypto(vector<string> alpha, int c, int l){
 
     set <string> cryptoSet;
 
     //조합 구하는데 필요한 0 & 1의 배열 생성
-    vector<int> arr(C-L,0);
-    int l=L;
-    while (l--){
+    vector<int> arr(c-l,0);
+    for (int i=0; i<l; i++){
         arr.push_back(1);
     }
+    sort(arr.begin(),arr.end(),greater<int>()); //3. string 간 정렬
 
     //1. C개중 L개 뽑는 조합
     do {
         string crypto = "";
-        for(int i=0; i<C;i++){
+        for(int i=0; i<c;i++){
             if (arr[i]==1) crypto+= alpha[i];
         }
         if (!satisfied(crypto)) continue; //2. 1모음 2자음 이상인지 체크
-        sort(crypto.begin(),crypto.end()); //3. 알파벳순으로 string 내 정렬
-        cryptoSet.insert(crypto); //4. Set에 넣어 string 간 정렬
+        cout<<crypto<<'\n';
+    } while(prev_permutation(arr.begin(),arr.end()));
 
-    } while(next_permutation(arr.begin(),arr.end()));
-
-    return cryptoSet;
 }
 
 
@@ -47,20 +43,19 @@ set<string> guessCrypto(vector<string> alpha, int C, int L){
 int main(){
 
     //입력
-    int L, C;
+    int l, c;
     string input;
     vector<string> alpha;
-    cin>>L >> C;
-    int c=C;
-    while (c--){
+    cin>>l >> c;
+
+    for(int i=0; i<c; i++){
         cin>> input;
         alpha.push_back(input);
     }
+    sort(alpha.begin(),alpha.end()); //4. string 내 정렬
 
-    //set 출력
-    for (auto i:guessCrypto(alpha, C, L)){
-        cout<< i << '\n';
-    }
+    //출력
+    guessCrypto(alpha, c, l);
 
     return 0;
 }

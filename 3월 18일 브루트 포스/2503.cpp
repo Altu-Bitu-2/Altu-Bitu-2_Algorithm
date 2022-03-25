@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <map>
 #include <string>
 #include <algorithm>
 using namespace std;
@@ -8,19 +8,18 @@ using namespace std;
 //가능한 모든 세자리 수 집합에서, 주어진 조건 일치하지 않는 경우 delete
 //구현ing
 
-set<string> candidate;
+map<string, bool> candidate;
 
 void ruleOut(string hint, int strike, int ball){
-    int num_strike=0, num_ball=0;
+
     //strike 갯수 세기
     for (auto c:candidate){
+        int num_strike=0, num_ball=0;
         for(int i=0; i<3;i++){
-            if (hint[i]==c[i]) num_strike++;
+            if (hint[i]==c.first[i]) num_strike++;
+            if (c.first.find(hint[i])!=c.first.npos && c.first.find(hint[i])!=i) num_ball++;
         }
-        for(int i=0; i<3;i++){
-            if (c.find(hint[i])!=string::npos) num_ball++;
-        }
-        if (num_strike!=strike || num_ball!=ball) candidate.erase(c);
+        if (num_strike!=strike || num_ball!=ball) c.second = false;//
     }
 }
 
@@ -28,7 +27,7 @@ int main(){
 
     //가능한 모든 세자리수들의 집합 만들기
     for (int i=100;i<1000;i++){
-        candidate.insert(to_string(i));
+        candidate[to_string(i)]=true;
     }
 
     //입력
@@ -38,7 +37,12 @@ int main(){
         cin>> hint >> strike >> ball;
         ruleOut(hint,strike,ball);//조건불일치 원소들 소거
     }
+    int cnt;
 
-    cout<< candidate.size();
+    for (auto i:candidate){
+        if (i.second==true) cnt++;
+    }
+
+    cout<< cnt;
     return 0;
 }

@@ -14,10 +14,13 @@ int main(){
     cin>>A>>B;
     //자릿수 맞춰주기
 
+    reverse(A.begin(),A.end());
+    reverse(B.begin(),B.end());
+
     string R = "";
 
     int result=0, carry=0; //각 자릿수 합 10 넘어갈때 올림
-    for (int i=max(A.size(), B.size())-1; i>=-1;i--){
+    for (int i=0; i<max(A.size(), B.size());i++){
         result+= carry; carry=0;//초기화
         if (i<A.size()) result+=A[i]-'0';
         if (i<B.size()) result+=B[i]-'0';
@@ -26,7 +29,7 @@ int main(){
         R=to_string(result%10)+R;
         result=0;//초기화
     }
-
+    if (carry==1) R=to_string(1)+R; //맨 마지막 자릿수 carry 있는 경우
 
     cout<< R;
 
